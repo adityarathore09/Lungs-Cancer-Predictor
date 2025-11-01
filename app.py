@@ -100,7 +100,7 @@ if st.session_state.page == "login":
             if username and password:
                 st.session_state.user = username
                 st.session_state.page = "predict"
-                st.experimental_rerun()
+                st.rerun()
             else:
                 st.error("Please enter both username and password.")
         if st.button("Sign Up"):
