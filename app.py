@@ -87,14 +87,24 @@ if "user" not in st.session_state:
 # -----------------------------#
 #         LOGIN PAGE
 # -----------------------------#
+# ---------------------- LOGIN PAGE ---------------------- #
 if st.session_state.page == "login":
     st.markdown("<h1 class='main-title'>🩺 Lung Cancer Prediction System</h1>", unsafe_allow_html=True)
     st.markdown("<p class='sub'>Your trusted AI health assistant</p>", unsafe_allow_html=True)
 
+    # ---- Custom CSS for smaller input boxes ----
+    st.markdown("""
+        <style>
+        div[data-baseweb="input"] > div:first-child {
+            width: 300px !important;   /* makes input smaller */
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
 
-    col1, col2, col3 = st.columns([2,2,2])
+    col1, col2, col3 = st.columns([2, 2, 2])
     with col2:
         if st.button("Login"):
             if username and password:
