@@ -88,8 +88,9 @@ if "user" not in st.session_state:
 #         LOGIN PAGE
 # ---------------------- LOGIN PAGE ---------------------- #
 if st.session_state.page == "login":
-    st.markdown("<h1 class='main-title'>🩺 Lung Cancer Prediction System</h1>", unsafe_allow_html=True)
-    st.markdown("<p class='sub'>Your trusted AI health assistant</p>", unsafe_allow_html=True)
+     st.markdown(f"<h1 class='main-title'>Welcome, {st.session_state.user}</h1>", unsafe_allow_html=True)
+    st.markdown("<p class='sub'>Please fill in your medical details below to check your risk.</p>", unsafe_allow_html=True)
+
 
     # ---- Custom CSS for smaller input boxes ----
     st.markdown("""
@@ -118,27 +119,23 @@ if st.session_state.page == "login":
 
 #       PREDICTION PAGE
 # -----------------------------#
-elif st.session_state.page == "predict":
-    st.markdown(f"<h1 class='main-title'>Welcome, {st.session_state.user}</h1>", unsafe_allow_html=True)
-    st.markdown("<p class='sub'>Please fill in your medical details below to check your risk.</p>", unsafe_allow_html=True)
 
-    st.sidebar.header("Patient Details")
-
-    GENDER = st.sidebar.selectbox("Gender", ['Male', 'Female'])
+GENDER = st.sidebar.selectbox("Gender", ['Male', 'Female'])
     AGE = st.sidebar.slider("Age", 20, 100, 50)
-    SMOKING = st.sidebar.selectbox("Smoking", ['Yes', 'No'])
-    YELLOW_FINGERS = st.sidebar.selectbox("Yellow Fingers", ['Yes', 'No'])
-    ANXIETY = st.sidebar.selectbox("Anxiety", ['Yes', 'No'])
-    PEER_PRESSURE = st.sidebar.selectbox("Peer Pressure", ['Yes', 'No'])
-    CHRONIC_DISEASE = st.sidebar.selectbox("Chronic Disease", ['Yes', 'No'])
-    FATIGUE = st.sidebar.selectbox("Fatigue", ['Yes', 'No'])
-    ALLERGY = st.sidebar.selectbox("Allergy", ['Yes', 'No'])
-    WHEEZING = st.sidebar.selectbox("Wheezing", ['Yes', 'No'])
-    ALCOHOL_CONSUMING = st.sidebar.selectbox("Alcohol Consuming", ['Yes', 'No'])
-    COUGHING = st.sidebar.selectbox("Coughing", ['Yes', 'No'])
-    SHORTNESS_OF_BREATH = st.sidebar.selectbox("Shortness of Breath", ['Yes', 'No'])
-    SWALLOWING_DIFFICULTY = st.sidebar.selectbox("Swallowing Difficulty", ['Yes', 'No'])
-    CHEST_PAIN = st.sidebar.selectbox("Chest Pain", ['Yes', 'No'])
+    SMOKING = st.sidebar.selectbox("Smoking (1=Yes, 2=No)", [1, 2])
+    YELLOW_FINGERS = st.sidebar.selectbox("Yellow Fingers (1=Yes, 2=No)", [1, 2])
+    ANXIETY = st.sidebar.selectbox("Anxiety (1=Yes, 2=No)", [1, 2])
+    PEER_PRESSURE = st.sidebar.selectbox("Peer Pressure (1=Yes, 2=No)", [1, 2])
+    CHRONIC_DISEASE = st.sidebar.selectbox("Chronic Disease (1=Yes, 2=No)", [1, 2])
+    FATIGUE = st.sidebar.selectbox("Fatigue (1=Yes, 2=No)", [1, 2])
+    ALLERGY = st.sidebar.selectbox("Allergy (1=Yes, 2=No)", [1, 2])
+    WHEEZING = st.sidebar.selectbox("Wheezing (1=Yes, 2=No)", [1, 2])
+    ALCOHOL_CONSUMING = st.sidebar.selectbox("Alcohol Consuming (1=Yes, 2=No)", [1, 2])
+    COUGHING = st.sidebar.selectbox("Coughing (1=Yes, 2=No)", [1, 2])
+    SHORTNESS_OF_BREATH = st.sidebar.selectbox("Shortness of Breath (1=Yes, 2=No)", [1, 2])
+    SWALLOWING_DIFFICULTY = st.sidebar.selectbox("Swallowing Difficulty (1=Yes, 2=No)", [1, 2])
+    CHEST_PAIN = st.sidebar.selectbox("Chest Pain (1=Yes, 2=No)", [1, 2])
+
 
 
     GENDER = 0 if GENDER == 'Male' else 1
