@@ -119,9 +119,9 @@ if st.session_state.page == "login":
 #       PREDICTION PAGE
 # -----------------------------#
 elif st.session_state.page == "predict":
+   
     st.markdown(f"<h1 class='main-title'>Welcome, {st.session_state.user}</h1>", unsafe_allow_html=True)
     st.markdown("<p class='sub'>Please fill in your medical details below to check your risk.</p>", unsafe_allow_html=True)
-
     st.sidebar.header("Patient Details")
 
     GENDER = st.sidebar.selectbox("Gender", ['Male', 'Female'])
