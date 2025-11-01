@@ -101,7 +101,7 @@ if st.session_state.page == "login":
         </style>
     """, unsafe_allow_html=True)
 
-        </style>
+        <style>
         div[data-baseweb="input"] > div:first-child {
             width: 300px !important;   /* makes input smaller */
         }
