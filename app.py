@@ -175,4 +175,4 @@ elif st.session_state.page == "thankyou":
             st.rerun()
         if st.button("🚪 Logout"):
             st.session_state.page = "login"
-            st.experimental_rerun()
+            st.rerun()
