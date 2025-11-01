@@ -159,7 +159,7 @@ elif st.session_state.page == "predict":
 
         st.session_state.prediction = result
         st.session_state.page = "thankyou"
-        st.experimental_rerun()
+        st.rerun()
 
 # -----------------------------#
 #        THANK YOU PAGE
@@ -172,7 +172,7 @@ elif st.session_state.page == "thankyou":
     with col2:
         if st.button("🔁 Check Again"):
             st.session_state.page = "predict"
-            st.experimental_rerun()
+            st.rerun()
         if st.button("🚪 Logout"):
             st.session_state.page = "login"
-            st.experimental_rerun()
+            st.rerun()
