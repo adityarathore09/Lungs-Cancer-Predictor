@@ -118,53 +118,72 @@ if st.session_state.page == "login":
 #       PREDICTION PAGE
 # -----------------------------#
 
-GENDER = st.sidebar.selectbox("Gender", ['Male', 'Female'])
+# -----------------------------#
+#       PREDICTION PAGE
+# -----------------------------#
+elif st.session_state.page == "predict":
+    # --- Title Section ---
+    st.markdown(f"<h1 class='main-title'>Welcome, {st.session_state.user}</h1>", unsafe_allow_html=True)
+    st.markdown(
+        "<p style='color:#00bfa6; text-align:center; font-size:18px;'>Please fill in your medical details below to check your risk.</p>",
+        unsafe_allow_html=True
+    )
+
+    # --- Sidebar Inputs ---
+    st.sidebar.header("Patient Details")
+
+    GENDER = st.sidebar.selectbox("Gender", ['Male', 'Female'])
     AGE = st.sidebar.slider("Age", 20, 100, 50)
-    SMOKING = st.sidebar.selectbox("Smoking (1=Yes, 2=No)", [1, 2])
-    YELLOW_FINGERS = st.sidebar.selectbox("Yellow Fingers (1=Yes, 2=No)", [1, 2])
-    ANXIETY = st.sidebar.selectbox("Anxiety (1=Yes, 2=No)", [1, 2])
-    PEER_PRESSURE = st.sidebar.selectbox("Peer Pressure (1=Yes, 2=No)", [1, 2])
-    CHRONIC_DISEASE = st.sidebar.selectbox("Chronic Disease (1=Yes, 2=No)", [1, 2])
-    FATIGUE = st.sidebar.selectbox("Fatigue (1=Yes, 2=No)", [1, 2])
-    ALLERGY = st.sidebar.selectbox("Allergy (1=Yes, 2=No)", [1, 2])
-    WHEEZING = st.sidebar.selectbox("Wheezing (1=Yes, 2=No)", [1, 2])
-    ALCOHOL_CONSUMING = st.sidebar.selectbox("Alcohol Consuming (1=Yes, 2=No)", [1, 2])
-    COUGHING = st.sidebar.selectbox("Coughing (1=Yes, 2=No)", [1, 2])
-    SHORTNESS_OF_BREATH = st.sidebar.selectbox("Shortness of Breath (1=Yes, 2=No)", [1, 2])
-    SWALLOWING_DIFFICULTY = st.sidebar.selectbox("Swallowing Difficulty (1=Yes, 2=No)", [1, 2])
-    CHEST_PAIN = st.sidebar.selectbox("Chest Pain (1=Yes, 2=No)", [1, 2])
+    SMOKING = st.sidebar.selectbox("Smoking", ['Yes', 'No'])
+    YELLOW_FINGERS = st.sidebar.selectbox("Yellow Fingers", ['Yes', 'No'])
+    ANXIETY = st.sidebar.selectbox("Anxiety", ['Yes', 'No'])
+    PEER_PRESSURE = st.sidebar.selectbox("Peer Pressure", ['Yes', 'No'])
+    CHRONIC_DISEASE = st.sidebar.selectbox("Chronic Disease", ['Yes', 'No'])
+    FATIGUE = st.sidebar.selectbox("Fatigue", ['Yes', 'No'])
+    ALLERGY = st.sidebar.selectbox("Allergy", ['Yes', 'No'])
+    WHEEZING = st.sidebar.selectbox("Wheezing", ['Yes', 'No'])
+    ALCOHOL_CONSUMING = st.sidebar.selectbox("Alcohol Consuming", ['Yes', 'No'])
+    COUGHING = st.sidebar.selectbox("Coughing", ['Yes', 'No'])
+    SHORTNESS_OF_BREATH = st.sidebar.selectbox("Shortness of Breath", ['Yes', 'No'])
+    SWALLOWING_DIFFICULTY = st.sidebar.selectbox("Swallowing Difficulty", ['Yes', 'No'])
+    CHEST_PAIN = st.sidebar.selectbox("Chest Pain", ['Yes', 'No'])
 
-
+    # --- Data Conversion ---
+    def encode(value):
+        return 1 if value == 'Yes' else 0
 
     GENDER = 0 if GENDER == 'Male' else 1
+
     input_data = pd.DataFrame({
         'GENDER': [GENDER],
         'AGE': [AGE],
-        'SMOKING': [SMOKING],
-        'YELLOW_FINGERS': [YELLOW_FINGERS],
-        'ANXIETY': [ANXIETY],
-        'PEER_PRESSURE': [PEER_PRESSURE],
-        'CHRONIC_DISEASE': [CHRONIC_DISEASE],
-        'FATIGUE': [FATIGUE],
-        'ALLERGY': [ALLERGY],
-        'WHEEZING': [WHEEZING],
-        'ALCOHOL_CONSUMING': [ALCOHOL_CONSUMING],
-        'COUGHING': [COUGHING],
-        'SHORTNESS_OF_BREATH': [SHORTNESS_OF_BREATH],
-        'SWALLOWING_DIFFICULTY': [SWALLOWING_DIFFICULTY],
-        'CHEST_PAIN': [CHEST_PAIN]
+        'SMOKING': [encode(SMOKING)],
+        'YELLOW_FINGERS': [encode(YELLOW_FINGERS)],
+        'ANXIETY': [encode(ANXIETY)],
+        'PEER_PRESSURE': [encode(PEER_PRESSURE)],
+        'CHRONIC_DISEASE': [encode(CHRONIC_DISEASE)],
+        'FATIGUE': [encode(FATIGUE)],
+        'ALLERGY': [encode(ALLERGY)],
+        'WHEEZING': [encode(WHEEZING)],
+        'ALCOHOL_CONSUMING': [encode(ALCOHOL_CONSUMING)],
+        'COUGHING': [encode(COUGHING)],
+        'SHORTNESS_OF_BREATH': [encode(SHORTNESS_OF_BREATH)],
+        'SWALLOWING_DIFFICULTY': [encode(SWALLOWING_DIFFICULTY)],
+        'CHEST_PAIN': [encode(CHEST_PAIN)]
     })
 
-    st.write("### Patient Input Summary")
+    # --- Display Summary ---
+    st.write("### 🧾 Patient Input Summary")
     st.dataframe(input_data)
 
+    # --- Predict Button ---
     if st.button("🔍 Predict Lung Cancer Risk"):
         pred = model.predict(input_data)[0]
         result = "⚠️ High Risk of Lung Cancer Detected" if pred == 1 else "✅ No Lung Cancer Risk Detected"
-
         st.session_state.prediction = result
         st.session_state.page = "thankyou"
         st.rerun()
+
 
 # -----------------------------#
 #        THANK YOU PAGE
