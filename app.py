@@ -86,35 +86,94 @@ if "user" not in st.session_state:
 
 # -----------------------------#
 #         LOGIN PAGE
-# -----------------------------#
 # ---------------------- LOGIN PAGE ---------------------- #
 if st.session_state.page == "login":
     st.markdown("<h1 class='main-title'>🩺 Lung Cancer Prediction System</h1>", unsafe_allow_html=True)
     st.markdown("<p class='sub'>Your trusted AI health assistant</p>", unsafe_allow_html=True)
 
-    # ---- Custom CSS for smaller input boxes ----
+    # ---- Custom CSS ----
     st.markdown("""
         <style>
+        .main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #0e1117;
+        }
+
+        .login-card {
+            background-color: #1e2228;
+            padding: 40px 60px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        .main-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .sub {
+            text-align: center;
+            color: #00adb5;
+            margin-bottom: 40px;
+        }
+
         div[data-baseweb="input"] > div:first-child {
-            width: 300px !important;   /* makes input smaller */
+            width: 300px !important;
+        }
+
+        .center-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 25px;
+            gap: 12px;
+        }
+
+        button[kind="secondary"] {
+            background-color: #00adb5 !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 8px !important;
+            width: 120px !important;
+        }
+
+        button[kind="secondary"]:hover {
+            background-color: #019ca3 !important;
         }
         </style>
     """, unsafe_allow_html=True)
 
+    # ---- Layout ----
+    st.markdown('<div class="main">', unsafe_allow_html=True)
+    st.markdown('<div class="login-card">', unsafe_allow_html=True)
+
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
 
-    col1, col2, col3 = st.columns([2, 2, 2])
-    with col2:
-        if st.button("Login"):
-            if username and password:
-                st.session_state.user = username
-                st.session_state.page = "predict"
-                st.rerun()
-            else:
-                st.error("Please enter both username and password.")
-        if st.button("Sign Up"):
-            st.success("Account created successfully! Please log in.")
+    # Center both buttons together
+    st.markdown('<div class="center-buttons">', unsafe_allow_html=True)
+    if st.button("Login"):
+        if username and password:
+            st.session_state.user = username
+            st.session_state.page = "predict"
+            st.rerun()
+        else:
+            st.error("Please enter both username and password.")
+
+    if st.button("Sign Up"):
+        st.success("Account created successfully! Please log in.")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 
 # -----------------------------#
