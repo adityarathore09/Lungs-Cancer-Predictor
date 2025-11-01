@@ -94,7 +94,7 @@ if st.session_state.page == "login":
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
 
-    col1, col2, col3 = st.columns([1,1,1])
+    col1, col2, col3 = st.columns([2,2,2])
     with col2:
         if st.button("Login"):
             if username and password:
