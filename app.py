@@ -159,7 +159,7 @@ elif st.session_state.page == "predict":
 
         st.session_state.prediction = result
         st.session_state.page = "thankyou"
-        st.experimental_rerun()
+        st.rerun()
 
 # -----------------------------#
 #        THANK YOU PAGE
