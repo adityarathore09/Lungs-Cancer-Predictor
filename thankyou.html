@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="result-box glass-box">
+  <h1 class="title">🌟 Result Summary</h1>
+  <h2 class="result">{{ result }}</h2>
+  <p class="subtitle">Thank you for using our AI-powered health prediction system ❤️</p>
+  <div class="emoji">🫁</div>
+  <div class="btn-group">
+    <a href="{{ url_for('predict') }}" class="btn">🔁 Check Again</a>
+    <a href="{{ url_for('logout') }}" class="btn logout">🚪 Logout</a>
+  </div>
+</div>
+{% endblock %}

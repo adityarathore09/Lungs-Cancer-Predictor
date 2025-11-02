@@ -1,0 +1,98 @@
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.background {
+  background: linear-gradient(120deg, #81d4fa, #e1f5fe, #bbdefb, #90caf9);
+  background-size: 300% 300%;
+  animation: gradientShift 12s ease infinite;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+@keyframes gradientShift {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+.glass-box {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 4rem auto;
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  animation: fadeIn 1.2s ease;
+}
+
+.title {
+  font-size: 2rem;
+  color: #01579b;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #4fc3f7; }
+  to { text-shadow: 0 0 20px #0288d1; }
+}
+
+.subtitle { color: #0277bd; margin-bottom: 1.5rem; }
+
+input, select {
+  width: 100%;
+  padding: 0.6rem;
+  margin: 0.5rem 0;
+  border-radius: 10px;
+  border: 1px solid #90caf9;
+}
+
+button, .btn {
+  background: linear-gradient(90deg, #0288d1, #26c6da);
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+}
+
+button:hover, .btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #0277bd, #00acc1);
+}
+
+.btn.logout {
+  background: linear-gradient(90deg, #e53935, #d32f2f);
+}
+
+.toast {
+  background: #ef5350;
+  color: white;
+  padding: 0.7rem;
+  border-radius: 8px;
+  animation: fadeIn 0.8s ease;
+}
+
+.fade-in { animation: fadeIn 1.5s ease; }
+@keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+
+.emoji {
+  font-size: 5rem;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%, 100% {transform: translateY(0);}
+  50% {transform: translateY(-15px);}
+}
+

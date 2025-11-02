@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="glass-box">
+  <h1 class="title">Welcome, {{ user }} 👋</h1>
+  <p class="subtitle">Fill in your medical details below to check your AI-driven risk analysis.</p>
+
+  <form method="POST" class="form-grid">
+    <label>Gender</label><select name="GENDER"><option>Male</option><option>Female</option></select>
+    <label>Age</label><input type="number" name="AGE" min="20" max="100" value="50">
+    <label>Smoking</label><select name="SMOKING"><option>Yes</option><option>No</option></select>
+    <label>Yellow Fingers</label><select name="YELLOW_FINGERS"><option>Yes</option><option>No</option></select>
+    <label>Anxiety</label><select name="ANXIETY"><option>Yes</option><option>No</option></select>
+    <label>Peer Pressure</label><select name="PEER_PRESSURE"><option>Yes</option><option>No</option></select>
+    <label>Chronic Disease</label><select name="CHRONIC_DISEASE"><option>Yes</option><option>No</option></select>
+    <label>Fatigue</label><select name="FATIGUE"><option>Yes</option><option>No</option></select>
+    <label>Allergy</label><select name="ALLERGY"><option>Yes</option><option>No</option></select>
+    <label>Wheezing</label><select name="WHEEZING"><option>Yes</option><option>No</option></select>
+    <label>Alcohol Consuming</label><select name="ALCOHOL_CONSUMING"><option>Yes</option><option>No</option></select>
+    <label>Coughing</label><select name="COUGHING"><option>Yes</option><option>No</option></select>
+    <label>Shortness of Breath</label><select name="SHORTNESS_OF_BREATH"><option>Yes</option><option>No</option></select>
+    <label>Swallowing Difficulty</label><select name="SWALLOWING_DIFFICULTY"><option>Yes</option><option>No</option></select>
+    <label>Chest Pain</label><select name="CHEST_PAIN"><option>Yes</option><option>No</option></select>
+
+    <button type="submit" class="predict-btn">🔍 Predict Lung Cancer Risk</button>
+  </form>
+</div>
+{% endblock %}
