@@ -8,7 +8,7 @@ app.secret_key = "supersecretkey"
 # Dummy model
 class DummyModel:
     def predict(self, X):
-        return [1 if X["SMOKING"][0] == 1 else 0]
+        return [1 if X["SMOKING"][0] == 1 else 0}
 
 model = DummyModel()
 
